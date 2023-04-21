@@ -8,9 +8,11 @@ import {
   SongTitle,
 } from "./styles.js";
 import { songList } from "./constants.js";
-import PlayerDataContext from "./playerContext.js";
 
 const buttonLabels = ["Not replaying", "Replaying all", "Replaying one"];
+
+// defaultValue = undefined
+const PlayerDataContext = React.createContext(undefined);
 
 const PlayerProvider = ({ children }) => {
   const [currentSong, setCurrentSong] = React.useState(null);
@@ -31,44 +33,40 @@ const PlayerProvider = ({ children }) => {
   };
 
   const selectNext = () => {
-    if (currentSong === null) {
+    if (currentSong === null || currentMode === buttonLabels[2]) {
       return;
     }
 
-    if (currentMode !== buttonLabels[2]) {
-      const currentSongIndex = songList.findIndex((obj) => {
-        return obj.id === currentSong.id;
-      });
+    const currentSongIndex = songList.findIndex((obj) => {
+      return obj.id === currentSong.id;
+    });
 
-      if (currentSongIndex === songList.length - 1) {
-        // This is last song.
-        if (currentMode === buttonLabels[1]) {
-          setCurrentSong(songList[0]);
-        }
-      } else {
-        setCurrentSong(songList[currentSongIndex + 1]);
+    if (currentSongIndex === songList.length - 1) {
+      // This is last song.
+      if (currentMode === buttonLabels[1]) {
+        setCurrentSong(songList[0]);
       }
+    } else {
+      setCurrentSong(songList[currentSongIndex + 1]);
     }
   };
 
   const selectPrevious = () => {
-    if (currentSong === null) {
+    if (currentSong === null || currentMode === buttonLabels[2]) {
       return;
     }
 
-    if (currentMode !== buttonLabels[2]) {
-      const currentSongIndex = songList.findIndex((obj) => {
-        return obj.id === currentSong.id;
-      });
+    const currentSongIndex = songList.findIndex((obj) => {
+      return obj.id === currentSong.id;
+    });
 
-      if (currentSongIndex === 0) {
-        // This is 1st song.
-        if (currentMode === buttonLabels[1]) {
-          setCurrentSong(songList[songList.length - 1]);
-        }
-      } else {
-        setCurrentSong(songList[currentSongIndex - 1]);
+    if (currentSongIndex === 0) {
+      // This is 1st song.
+      if (currentMode === buttonLabels[1]) {
+        setCurrentSong(songList[songList.length - 1]);
       }
+    } else {
+      setCurrentSong(songList[currentSongIndex - 1]);
     }
   };
 
