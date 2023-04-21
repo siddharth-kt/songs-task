@@ -118,10 +118,10 @@ const ControlBar = () => {
     <BottomBar>
       <BarSongTitle data-testid="barTitle">{title}</BarSongTitle>
       <div>
-        <Button data-testid="previousButton" onClick={selectNext}>
+        <Button data-testid="previousButton" onClick={selectPrevious}>
           Previous
         </Button>
-        <Button data-testid="nextButton" onClick={selectPrevious}>
+        <Button data-testid="nextButton" onClick={selectNext}>
           Next
         </Button>
         <Button data-testid="currentModeButton" onClick={updateCurrentMode}>
