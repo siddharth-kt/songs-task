@@ -11,7 +11,7 @@ const songList = [
   },
   {
     id: 2,
-    title: "Owner of a loleny Heart",
+    title: "Owner of a lonely Heart",
     author: "Yes",
   },
 ];
