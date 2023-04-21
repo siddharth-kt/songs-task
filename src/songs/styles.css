@@ -1,0 +1,32 @@
+#main-container {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  font-size: 1em;
+}
+
+#controller-container {
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  position: absolute;
+  display: flex;
+  background-color: black;
+  flex-direction: column;
+  padding: 1%;
+}
+
+.song-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#songs-container {
+  display: flex;
+  flex-direction: column;
+}
+
+#currently-playing-song {
+  background-color: cornflowerblue;
+}
