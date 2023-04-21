@@ -2,7 +2,7 @@ import React from "react";
 
 const PlayerContext = React.createContext({
   songs: [],
-  currentlyPlayingSong: {},
+  currentlyPlayingSong: null,
   setCurrentlyPlayingSong: () => {},
   moveNext: () => {},
   movePrevious: () => {},
