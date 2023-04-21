@@ -1,5 +1,5 @@
-import React from "react";
-import { PlayerConsumer } from "./playerContext";
+import React, { useContext } from "react";
+import PlayerContext from "./playerContext";
 import "./styles.css";
 
 function SongItem({ song, isCurrentlyPlayingSong, setCurrentlyPlayingSong }) {
@@ -21,25 +21,23 @@ function SongItem({ song, isCurrentlyPlayingSong, setCurrentlyPlayingSong }) {
 }
 
 export default function Songs() {
+  const { currentlyPlayingSong, setCurrentlyPlayingSong, songs } =
+    useContext(PlayerContext);
+
   return (
     <div id="songs-container">
-      <PlayerConsumer>
-        {(value) =>
-          value.songs.map((song, index) => {
-            return (
-              <SongItem
-                key={index}
-                song={song}
-                isCurrentlyPlayingSong={
-                  value.currentlyPlayingSong &&
-                  value.currentlyPlayingSong.title === song.title
-                }
-                setCurrentlyPlayingSong={value.setCurrentlyPlayingSong}
-              />
-            );
-          })
-        }
-      </PlayerConsumer>
+      {songs.map((song, index) => {
+        return (
+          <SongItem
+            key={index}
+            song={song}
+            isCurrentlyPlayingSong={
+              currentlyPlayingSong && currentlyPlayingSong.title === song.title
+            }
+            setCurrentlyPlayingSong={setCurrentlyPlayingSong}
+          />
+        );
+      })}
     </div>
   );
 }

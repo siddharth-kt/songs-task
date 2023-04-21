@@ -1,5 +1,5 @@
-import React from "react";
-import { PlayerConsumer } from "./playerContext";
+import React, { useContext } from "react";
+import PlayerContext from "./playerContext";
 import "./styles.css";
 
 function ControlComponent({ song, moveNext, movePrevious }) {
@@ -42,17 +42,16 @@ function ControlComponent({ song, moveNext, movePrevious }) {
 }
 
 export default function ControlBar() {
-  return (
-    <PlayerConsumer>
-      {(value) =>
-        value.currentlyPlayingSong ? (
-          <ControlComponent
-            song={value.currentlyPlayingSong}
-            moveNext={value.moveNext}
-            movePrevious={value.movePrevious}
-          />
-        ) : null
-      }
-    </PlayerConsumer>
+  const { currentlyPlayingSong, moveNext, movePrevious } =
+    useContext(PlayerContext);
+
+  return currentlyPlayingSong ? (
+    <ControlComponent
+      song={currentlyPlayingSong}
+      moveNext={moveNext}
+      movePrevious={movePrevious}
+    />
+  ) : (
+    <></>
   );
 }

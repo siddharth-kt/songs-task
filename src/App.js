@@ -3,24 +3,10 @@ import { PlayerProvider } from "./components/playerContext";
 import ControlBar from "./components/controlBar";
 import Songs from "./components/songs";
 import "./components/styles.css";
-
-const AllSongs = [
-  {
-    title: "My heart will go on",
-    author: "Celien Dion",
-  },
-  {
-    title: "Court of the Crimson King",
-    author: "King Crimson",
-  },
-  {
-    title: "Owner of a loleny Heart",
-    author: "Yes",
-  },
-];
+import { songList } from "./constants";
 
 export default function Index() {
-  const [songs, setSongs] = useState(AllSongs);
+  const [songs, setSongs] = useState(songList);
   const [currentlyPlayingSong, setCurrentlyPlayingSong] = useState(null);
 
   const moveNext = () => {
