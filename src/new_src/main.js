@@ -137,11 +137,11 @@ const Songs = () => {
 
   return (
     <PlayList>
-      {songList.map(({ title, author, id, active }) => (
+      {songList.map(({ title, author, id }) => (
         <Song
           key={id}
           onClick={() => {
-            updateCurrentSong({ id, title, author, active });
+            updateCurrentSong({ id, title, author });
           }}
         >
           <SongTitle
